@@ -4,17 +4,21 @@ let sec = document.getElementById("sec");
 
 function displayTime() {
     let date = new Date();
-    console.log(date);
 
     // getting hours, min, sec
 
-    let hh = date.getHours();
-    let mm = date.getMinutes();
+    const ms = date.getMilliseconds();
     let ss = date.getSeconds();
+    let mm = date.getMinutes();
+    let hh = date.getHours();
 
-    let hRotation = 30*hh + mm/2;
-    let mRotation = 6*mm;
-    let sRotation = 6*ss;
+    const s = ss + ms/1000;
+    const m = mm + s/60;
+    const h = (hh % 12) + m/60;
+
+    let sRotation = 6*s;
+    let mRotation = 6*m;
+    let hRotation = 30*h;
 
     hr.style.transform = `rotate(${hRotation}deg)`;
     min.style.transform = `rotate(${mRotation}deg)`;
